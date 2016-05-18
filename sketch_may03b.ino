@@ -13,7 +13,7 @@
 #define S_SYNCN 44
 #define IN_SEN_EN 26
 
-
+unsigned char buffer[8]={0,0,0,0,0,0,0,0};
 int SensorA[8] = {A0,A1,A2,A3,A4,A5,A6,A7};
 int SensorD[8] = {30,31,32,33,34,35,36,37};
 int x_val = 0;
@@ -312,8 +312,13 @@ void loop()
 
 
 void serialEvent(){
+    unsigned char z =0;
+    Serial.readBytes((char *)buffer,8);
+    for( z=1; z<5; z++)
+      Serial.println(buffer[z]);
+  
 
-    int command = Serial.read();
+   /* int command = Serial.read();
 
     switch (command)
   {
@@ -329,7 +334,7 @@ void serialEvent(){
       move_stop();
       front_led_control(false);
       rear_led_control(false);
-  }
+  }*/
 
 }
 
